@@ -55,6 +55,7 @@ function Sort() {
           data-testid="column-sort-input-asc"
           value="ASC"
           type="radio"
+          // Chamada da função handleChange
           onClick={ handleChange }
         />
 
@@ -69,6 +70,7 @@ function Sort() {
           data-testid="column-sort-input-desc"
           value="DESC"
           type="radio"
+          // Chamada da função handleChange
           onClick={ handleChange }
         />
       </div>
@@ -76,6 +78,7 @@ function Sort() {
       <button
         data-testid="column-sort-button"
         type="button"
+        // Chamada da função handleClick
         onClick={ handleClick }
       >
         SORT
@@ -84,4 +87,5 @@ function Sort() {
   );
 }
 
+// Exportação padrão
 export default Sort;

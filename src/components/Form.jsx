@@ -100,6 +100,7 @@ function Form() {
           <select
             name="comparison"
             data-testid="comparison-filter"
+            // Chamada da função handleComparisonFilters
             onChange={ handleComparisonFilters }
           >
             <option value="maior que">maior que</option>
@@ -157,4 +158,5 @@ function Form() {
   );
 }
 
+// Exportação padrão
 export default Form;
