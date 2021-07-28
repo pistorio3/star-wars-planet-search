@@ -1,37 +1,48 @@
+// Importação do React e dos Hooks
 import React, { useContext, useEffect, useState } from 'react';
+// Importação do Context
 import AppContext from '../context/AppContext';
 
 function Table() {
-  const {
-    sortData,
-    headings,
-    APIResult,
-    nameFilter,
-  } = useContext(AppContext);
+  // Busca no Context as variáveis e funções necessárias
+  const { sortData, headings, APIResult, nameFilter } = useContext(AppContext);
+
+  // Cria um estado para salvar o conteúdo que sera renderizado
   const [toRender, setToRender] = useState([]);
 
   useEffect(() => {
+    // Recebe os planetas correspondentes ao nome digitado no input
     const filteredData = APIResult.filter(({ name }) => (
       name.toLowerCase().includes(nameFilter))).map((planet) => planet);
-    const APISorted = sortData(APIResult);
-    const data = nameFilter
-      ? filteredData : APISorted;
 
+    // Recebe os dados ordenados
+    const APISorted = sortData(APIResult);
+
+    // Caso exista nome digitado mostra os planetas correspondentes
+    // Caso não mostra os valores ordenados por nome (forma default)
+    const data = nameFilter ? filteredData : APISorted;
+
+    // Seta o conteudo a ser renderizado
     setToRender(data);
   }, [nameFilter, APIResult, sortData]);
 
+  // Funçào Render Headings - Realiza a renderização dos títulos das colunas
   const renderHeadings = () => (
-    headings.map((heading, index) => (<th key={ index }>{ heading }</th>)));
+    // Utiliza o <th> para ficar em negrito
+    headings.map((heading, index) => (<th key={ index }>{ heading }</th>))
+  );
 
   return (
     <table>
       <thead>
         <tr>
+          {/* Chamada da função renderHeadings */}
           { renderHeadings() }
         </tr>
       </thead>
 
       <tbody>
+        {/* Realiza um Map para renderizar os planetas e suas colunas */}
         { toRender.map((planets, index) => (
           <tr key={ index }>
             <td
@@ -58,4 +69,5 @@ function Table() {
   );
 }
 
+// Exportação padrão
 export default Table;
